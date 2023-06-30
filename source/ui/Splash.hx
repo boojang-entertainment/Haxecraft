@@ -1,5 +1,7 @@
 package ui;
-import flixel.*;
+import flixel.FlxSprite;
+import flixel.FlxState;
+import flixel.FlxG;
 import flixel.util.*;
 class Splash extends FlxState{
     private var Splash:FlxSprite;
@@ -7,10 +9,10 @@ class Splash extends FlxState{
     override public function create(){
         super.create();
         Splash = new FlxSprite(0,0,"assets/splash.png");
-        switchtomenu();
+        add(Splash);
+        new FlxTimer().start(3.0, switchtomenu);
     }
-    private function switchtomenu():Void{
-        new FlxTimer().start(3.0, EventSwitch);
+    private function switchtomenu(tmr:FlxTimer):Void{
         FlxG.switchState(new Menu());
     }
     override public function update(elapsed:Float){
